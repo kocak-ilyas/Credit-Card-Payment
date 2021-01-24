@@ -148,7 +148,6 @@ export default function App() {
                   onChange={(e) => setCvc(e.target.value)}
                   onFocus={(e) => setFocus(e.target.name)}
                   ref={register({
-                    required: "This field can not be empty!!!",
                     minLength: {
                       value: 3,
                       message: "Password must be at least 3 characters!!!",
