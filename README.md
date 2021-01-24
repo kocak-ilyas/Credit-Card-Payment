@@ -3,7 +3,7 @@
 <hr/>
 <h3>FE_Test</h3>
 <hr/>
-<h6>Demo                : https://ilyasCreditPayment.netlify.app/ </h6>
+<h6>Demo                : https://ilyascreditpayment.netlify.app </h6>
 <img src="./src/image/visaCard.png" alt="website_image"/>
 <hr/>
 <img src="./src/image/paymentSuccesfuly.png" alt="website_image2"/>
