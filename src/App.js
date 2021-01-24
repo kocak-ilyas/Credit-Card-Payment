@@ -1,15 +1,28 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Cards from "react-credit-cards";
+import { useForm } from "react-hook-form";
 import "react-credit-cards/es/styles-compiled.css";
-import { Button, Col, Form, Row } from "reactstrap";
+import { Button, Col, Form, FormText, Row } from "reactstrap";
 
 export default function App() {
+  const { register, handleSubmit, errors } = useForm();
+  const [card, setCard] = useState();
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
-
+  const onSubmit = (data) => {
+    setCard({
+      number: { number },
+      name: { name },
+      date: { date },
+      cvc: { cvc },
+    });
+  };
+  useEffect(() => {
+    console.log(card);
+  }, [card]);
   return (
     <div id="App" className="">
       <h1 className="p-3 m-3 bg-primary text-white themed-container shadow rounded-pill text-center">
@@ -28,7 +41,7 @@ export default function App() {
         </Col>
         <Col xs={1} className="m-0 p-0"></Col>
         <Col xs={5} className="m-0 p-0">
-          <Form>
+          <Form onSubmit={handleSubmit(onSubmit)}>
             <Row className="p-0 m-0">
               <input
                 className="form-control m-1 p-2"
@@ -38,7 +51,9 @@ export default function App() {
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 onFocus={(e) => setFocus(e.target.name)}
+                ref={register({ required: "This field can not be empty!!!" })}
               />
+              {errors.name && <FormText>{errors.name.message}</FormText>}
             </Row>
             <Row className="p-0 m-0">
               <input
@@ -49,7 +64,19 @@ export default function App() {
                 value={number}
                 onChange={(e) => setNumber(e.target.value)}
                 onFocus={(e) => setFocus(e.target.name)}
+                ref={register({
+                  required: "This field can not be empty!!!",
+                  minLength: {
+                    value: 16,
+                    message: "Password must be at least 16 characters!!!",
+                  },
+                  maxLength: {
+                    value: 16,
+                    message: "Password must be maximum of 16 characters!!!",
+                  },
+                })}
               />
+              {errors.number && <FormText>{errors.number.message}</FormText>}
             </Row>
             <Row className="p-0 m-0">
               <Col xs={7} className="m-0 p-0">
@@ -61,7 +88,19 @@ export default function App() {
                   value={date}
                   onChange={(e) => setDate(e.target.value)}
                   onFocus={(e) => setFocus(e.target.name)}
+                  ref={register({
+                    required: "This field can not be empty!!!",
+                    minLength: {
+                      value: 4,
+                      message: "Password must be at least 4 characters!!!",
+                    },
+                    maxLength: {
+                      value: 4,
+                      message: "Password must be maximum of 4 characters!!!",
+                    },
+                  })}
                 />
+                {errors.date && <FormText>{errors.date.message}</FormText>}
               </Col>
               <Col xs={1} className="m-0 p-0" />
               <Col xs={3} className="m-0 p-0">
@@ -73,7 +112,19 @@ export default function App() {
                   value={cvc}
                   onChange={(e) => setCvc(e.target.value)}
                   onFocus={(e) => setFocus(e.target.name)}
+                  ref={register({
+                    required: "This field can not be empty!!!",
+                    minLength: {
+                      value: 3,
+                      message: "Password must be at least 3 characters!!!",
+                    },
+                    maxLength: {
+                      value: 3,
+                      message: "Password must be maximum of 3 characters!!!",
+                    },
+                  })}
                 />
+                {errors.cvc && <FormText>{errors.cvc.message}</FormText>}
               </Col>
             </Row>
             <hr />
