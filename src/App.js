@@ -2,11 +2,25 @@ import React, { useEffect, useState } from "react";
 import Cards from "react-credit-cards";
 import { useForm } from "react-hook-form";
 import "react-credit-cards/es/styles-compiled.css";
-import { Button, Col, Form, FormText, Row } from "reactstrap";
+import {
+  Badge,
+  Button,
+  Card,
+  CardText,
+  CardTitle,
+  Col,
+  CustomInput,
+  Form,
+  FormGroup,
+  FormText,
+  Label,
+  Row,
+} from "reactstrap";
 
 export default function App() {
   const { register, handleSubmit, errors } = useForm();
   const [card, setCard] = useState();
+  const [showCard, setShowCard] = useState(false);
   const [number, setNumber] = useState("");
   const [name, setName] = useState("");
   const [date, setDate] = useState("");
@@ -14,11 +28,12 @@ export default function App() {
   const [focus, setFocus] = useState("");
   const onSubmit = (data) => {
     setCard({
-      number: { number },
-      name: { name },
-      date: { date },
-      cvc: { cvc },
+      number: number,
+      name: name,
+      date: date,
+      cvc: cvc,
     });
+    setShowCard(true);
   };
   useEffect(() => {
     console.log(card);
@@ -28,6 +43,26 @@ export default function App() {
       <h1 className="p-3 m-3 bg-primary text-white themed-container shadow rounded-pill text-center">
         Credit Card Payment
       </h1>
+      {showCard && (
+        <div>
+          <Row className="p-3 mb-2 ml-5">
+            <Col sm="4">
+              <Card body className="p-0 m-4 rounded bg-info text-white">
+                <CardTitle tag="h5" className="p-1 ml-5">
+                  Credit Card Payment
+                </CardTitle>
+                <CardText className="p-1 ml-5">Name : {name}</CardText>
+                <CardText className="p-1 ml-5">Card Number : {number}</CardText>
+                <CardText className="p-1 ml-5">Date : {date}</CardText>
+                <CardText className="p-1 ml-5">CVC : {cvc}</CardText>
+                <h3 className="p-1 ml-5">
+                  <Badge color="success">550$ Payment Succesfully</Badge>
+                </h3>
+              </Card>
+            </Col>
+          </Row>
+        </div>
+      )}
       <hr />
       <Row className="themed-container border rounded-pill p-5 m-5">
         <Col xs={5} className="m-0 p-0">
@@ -58,7 +93,7 @@ export default function App() {
             <Row className="p-0 m-0">
               <input
                 className="form-control m-1 p-2"
-                type="tel"
+                type="number"
                 name="number"
                 placeholder="Card Number"
                 value={number}
@@ -106,7 +141,7 @@ export default function App() {
               <Col xs={3} className="m-0 p-0">
                 <input
                   className="form-control m-1 p-2"
-                  type="tel"
+                  type="password"
                   name="cvc"
                   placeholder="CVC"
                   value={cvc}
@@ -127,6 +162,21 @@ export default function App() {
                 {errors.cvc && <FormText>{errors.cvc.message}</FormText>}
               </Col>
             </Row>
+            <FormGroup check>
+              <Label check>
+                <Row for="ConditionsCheckbox">
+                  <CustomInput
+                    type="switch"
+                    id="ConditionsCustomSwitch"
+                    required
+                  />
+                  <h6>
+                    I agree to <a href="/">Conditions of Use</a> and{" "}
+                    <a href="/">Privacy Notice</a>.
+                  </h6>
+                </Row>
+              </Label>
+            </FormGroup>
             <hr />
             <Row className="p-0 m-0">
               <Col xs={3} className="m-0 p-0">
