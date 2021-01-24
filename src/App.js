@@ -2,20 +2,7 @@ import React, { useEffect, useState } from "react";
 import Cards from "react-credit-cards";
 import { useForm } from "react-hook-form";
 import "react-credit-cards/es/styles-compiled.css";
-import {
-  Badge,
-  Button,
-  Card,
-  CardText,
-  CardTitle,
-  Col,
-  CustomInput,
-  Form,
-  FormGroup,
-  FormText,
-  Label,
-  Row,
-} from "reactstrap";
+import {Badge, Button, Card, CardText, CardTitle, Col, CustomInput, Form, FormGroup, FormText, Label, Row} from "reactstrap";
 
 export default function App() {
   const { register, handleSubmit, errors } = useForm();
@@ -27,17 +14,10 @@ export default function App() {
   const [cvc, setCvc] = useState("");
   const [focus, setFocus] = useState("");
   const onSubmit = (data) => {
-    setCard({
-      number: number,
-      name: name,
-      date: date,
-      cvc: cvc,
-    });
+    setCard({number: number, name: name, date: date, cvc: cvc});
     setShowCard(true);
   };
-  useEffect(() => {
-    console.log(card);
-  }, [card]);
+  useEffect(() => {console.log(card)}, [card]);
   return (
     <div id="App" className="">
       <h1 className="p-3 m-3 bg-primary text-white themed-container shadow rounded-pill text-center">
@@ -169,25 +149,18 @@ export default function App() {
                     id="ConditionsCustomSwitch"
                     required
                   />
-                  <h6>
-                    I agree to <a href="/">Conditions of Use</a> and{" "}
-                    <a href="/">Privacy Notice</a>.
-                  </h6>
+                  <h6>I agree to <a href="/">Conditions of Use</a> and{" "}<a href="/">Privacy Notice</a>.</h6>
                 </Row>
               </Label>
             </FormGroup>
             <hr />
             <Row className="p-0 m-0">
               <Col xs={3} className="m-0 p-0">
-                <Button color="success" size="lg" disabled>
-                  550$
-                </Button>
+                <Button color="success" size="lg" disabled>550$</Button>
               </Col>
               <Col xs={6} className="m-0 p-0" />
               <Col xs={3} className="m-0 p-0">
-                <Button color="danger" size="lg">
-                  Pay Now
-                </Button>
+                <Button color="danger" size="lg">Pay Now</Button>
               </Col>
             </Row>
           </Form>
