@@ -1,6 +1,8 @@
-<h3> Credit Card Payment </h3>
+<h3>Credit Card Payment</h3>
 <h5>with React</h5>
-<br/>
+<hr/>
+<h3>FE_Test</h3>
+<hr/>
 <h6>Demo                : https://ilyasCreditPayment.netlify.app/ </h6>
 <hr/>
 <h6>Linkedin            : https://www.linkedin.com/in/ilyas-kocak-2053421a5</h6>
